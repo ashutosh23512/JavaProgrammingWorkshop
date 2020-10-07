@@ -8,9 +8,8 @@ public class TicTacToe {
 	static void initBoard() {
 		for (int i = 1; i < BOARD.length; i++) 
 			 {
-				BOARD[i] = 'z';
-			}
-		
+				BOARD[i] = ' ';
+			}	
 		}
 		
 	static void chooseVal()
@@ -33,15 +32,28 @@ public class TicTacToe {
 		else {
 			System.out.println("Please enter x or o");
 			chooseVal();
-		}
-		
+		}	
 	}
-	public static void main(String[] args) {
-		
+	
+	static void showBoard()
+	{
+		System.out.println("Board is: ");
+		for (int i = 1; i < BOARD.length; i++) 
+		 {
+			System.out.print("Position "+i+" is: "+BOARD[i]);
+			if (i%3==0)
+			{
+				System.out.println();
+			}
+		}
+	}
+
+	
+	public static void main(String[] args) {	
 		System.out.println("Welcome to tic tac toe");
 		initBoard();
 		chooseVal();
+		showBoard();
 		
 	}
-
 }
