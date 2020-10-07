@@ -16,7 +16,6 @@ public class TicTacToe {
 	{
 		System.out.println("Choose x or o");
 		Scanner s = new Scanner(System.in);
-
 		char input=s.next().charAt(0);
 		if(input=='x') {
 			player='x';
@@ -40,7 +39,7 @@ public class TicTacToe {
 		System.out.println("Board is: ");
 		for (int i = 1; i < BOARD.length; i++) 
 		 {
-			System.out.print("Position "+i+" is: "+BOARD[i]);
+			System.out.print(" Position "+i+" is: "+BOARD[i]);
 			if (i%3==0)
 			{
 				System.out.println();
@@ -48,12 +47,27 @@ public class TicTacToe {
 		}
 	}
 
+	static void makeMove()
+	{
+		Scanner s1 = new Scanner(System.in);
+		System.out.println("Choose position to mark");
+		int y=s1.nextInt();
+		if(BOARD[y]==' ')
+		BOARD[y]=player;
+		else {
+			System.out.println("Choose other position");
+		makeMove();
+		}
+	}
 	
 	public static void main(String[] args) {	
 		System.out.println("Welcome to tic tac toe");
 		initBoard();
 		chooseVal();
 		showBoard();
+		makeMove();
+		showBoard();
+
 		
 	}
 }
