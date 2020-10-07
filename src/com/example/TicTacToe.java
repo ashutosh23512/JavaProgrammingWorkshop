@@ -48,26 +48,62 @@ public class TicTacToe {
 	}
 
 	static void makeMove()
-	{
+	{	
+		showBoard();
 		Scanner s1 = new Scanner(System.in);
-		System.out.println("Choose position to mark");
+		System.out.println("Choose your position to mark");
 		int y=s1.nextInt();
-		if(BOARD[y]==' ')
+		if(BOARD[y]==' ') {
 		BOARD[y]=player;
+		showBoard();
+		makeMoveComp();
+		
+		}
 		else {
 			System.out.println("Choose other position");
 		makeMove();
 		}
+	}
+	static void makeMoveComp()
+	{
+		Random rand = new Random();
+		int y1=(rand.nextInt(9))+1;		
+		if(BOARD[y1]==' ')
+		{
+			BOARD[y1]=comp;
+			makeMove();
+		}
+		else 
+		makeMoveComp();
+		
+	}
+
+	static void toss(String a) {
+		Random rand = new Random();
+		int t = rand.nextInt(1);
+        int c = -1;
+        if(a =="heads") c=0;
+        if(a=="tails") c=1;
+		if(t==c) {
+			System.out.println("Player goes first");
+			makeMove();
+			}
+		else {
+		System.out.println("Computer goes first");
+		makeMoveComp();
+		}
+		
+		
 	}
 
 	public static void main(String[] args) {	
 		System.out.println("Welcome to tic tac toe");
 		initBoard();
 		chooseVal();
-		showBoard();
-		makeMove();
-		showBoard();
+		System.out.println("Enter heads or tails");
+		Scanner s2 = new Scanner(System.in);
+		String value = s2.next();
+		toss(value);
 
-		
 	}
 }
