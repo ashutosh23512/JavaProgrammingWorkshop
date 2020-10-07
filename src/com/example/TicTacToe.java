@@ -5,6 +5,7 @@ public class TicTacToe {
 	static char[] BOARD=new char [10];
 	static char player=' ';
 	static char comp=' ';
+	static boolean notFull = true;
 	static void initBoard() {
 		for (int i = 1; i < BOARD.length; i++) 
 			 {
@@ -56,27 +57,21 @@ public class TicTacToe {
 		if(BOARD[y]==' ') {
 		BOARD[y]=player;
 		showBoard();
-		makeMoveComp();
-		
+		boolean wincheck=win();
+		if(wincheck)
+		{
+			System.out.println("Player Won");
+			return;
+		}
+		else
+		makeMove();
 		}
 		else {
-			System.out.println("Choose other position");
+		System.out.println("Choose other position");
 		makeMove();
 		}
 	}
-	static void makeMoveComp()
-	{
-		Random rand = new Random();
-		int y1=(rand.nextInt(9))+1;		
-		if(BOARD[y1]==' ')
-		{
-			BOARD[y1]=comp;
-			makeMove();
-		}
-		else 
-		makeMoveComp();
-		
-	}
+
 
 	static void toss(String a) {
 		Random rand = new Random();
@@ -88,14 +83,23 @@ public class TicTacToe {
 			System.out.println("Player goes first");
 			makeMove();
 			}
-		else {
-		System.out.println("Computer goes first");
-		makeMoveComp();
-		}
-		
+		else
+		makeMove();
 		
 	}
-
+	
+	static boolean win()
+{
+		return (((BOARD[1] == BOARD[2]) && (BOARD[2] == BOARD[3]) && BOARD[1]!=' ')
+				|| ((BOARD[4] == BOARD[5]) && (BOARD[5] == BOARD[6]) && BOARD[4]!=' ')
+				|| ((BOARD[7] == BOARD[8]) && (BOARD[8] == BOARD[9]) && BOARD[7]!=' ')
+				|| ((BOARD[1] == BOARD[5]) && (BOARD[5] == BOARD[9]) && BOARD[1]!=' ')
+				|| ((BOARD[3] == BOARD[5]) && (BOARD[5] == BOARD[7]) && BOARD[3]!=' ')
+				|| ((BOARD[1] == BOARD[4]) && (BOARD[4] == BOARD[7])&& BOARD[1]!=' ' )
+				|| ((BOARD[2] == BOARD[5]) && (BOARD[5] == BOARD[8]) && BOARD[2]!=' ')
+				|| ((BOARD[3] == BOARD[6]) && (BOARD[6] == BOARD[9])&& BOARD[3]!=' '));
+}
+	
 	public static void main(String[] args) {	
 		System.out.println("Welcome to tic tac toe");
 		initBoard();
@@ -104,6 +108,5 @@ public class TicTacToe {
 		Scanner s2 = new Scanner(System.in);
 		String value = s2.next();
 		toss(value);
-
-	}
-}
+	
+}}
