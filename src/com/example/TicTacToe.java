@@ -208,6 +208,13 @@ public class TicTacToe {
 			return 7;
 		else if (isAvailable(9))
 			return 9;
+		else
+			return midOrSidePosition();
+	}
+
+	public static int midOrSidePosition() {
+		if (isAvailable(5))
+			return 5;
 		else {
 			int flag = 0, position = 0;
 			while (flag == 0) {
