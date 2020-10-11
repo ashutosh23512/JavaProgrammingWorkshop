@@ -69,12 +69,67 @@ public class TicTacToe {
 	}
 
 	static void makeMoveComp() {
-		Random rand = new Random();
-		int y1 = (rand.nextInt(9)) + 1;
-		if (BOARD[y1] == ' ') {
-			BOARD[y1] = comp;
-		} else
-			makeMoveComp();
+		int position = 0;
+		for (int i = 1; i < BOARD.length && BOARD[i] == ' '; i++) {
+			if (i == 1) {
+				if ((BOARD[2] == comp && BOARD[3] == comp) || (BOARD[4] == comp && BOARD[7] == comp)
+						|| (BOARD[5] == comp && BOARD[9] == comp))
+					position = i;
+			}
+			if (i == 2) {
+				if ((BOARD[1] == comp && BOARD[3] == comp) || (BOARD[5] == comp && BOARD[8] == comp))
+					position = i;
+			}
+			if (i == 3) {
+				if ((BOARD[2] == comp && BOARD[1] == comp) || (BOARD[6] == comp && BOARD[9] == comp)
+						|| (BOARD[5] == comp && BOARD[7] == comp))
+					position = i;
+			}
+			if (i == 4) {
+				if ((BOARD[1] == comp && BOARD[7] == comp) || (BOARD[5] == comp && BOARD[6] == comp))
+					position = i;
+			}
+			if (i == 5) {
+				if ((BOARD[1] == comp && BOARD[9] == comp) || (BOARD[3] == comp && BOARD[7] == comp)
+						|| (BOARD[2] == comp && BOARD[8] == comp) || (BOARD[4] == comp && BOARD[6] == comp))
+					position = i;
+			}
+			if (i == 6) {
+				if ((BOARD[3] == comp && BOARD[9] == comp) || (BOARD[5] == comp && BOARD[4] == comp))
+					position = i;
+			}
+			if (i == 7) {
+				if ((BOARD[1] == comp && BOARD[4] == comp) || (BOARD[9] == comp && BOARD[8] == comp)
+						|| (BOARD[5] == comp && BOARD[3] == comp))
+					position = i;
+			}
+			if (i == 8) {
+				if ((BOARD[2] == comp && BOARD[5] == comp) || (BOARD[7] == comp && BOARD[9] == comp))
+					position = i;
+			}
+			if (i == 9) {
+				if ((BOARD[7] == comp && BOARD[8] == comp) || (BOARD[3] == comp && BOARD[6] == comp)
+						|| (BOARD[5] == comp && BOARD[1] == comp))
+					position = i;
+			} else
+				position = 0;
+		}
+		if (position != 0) {
+			BOARD[position] = comp;
+		} else {
+			System.out.println("Picking random value..");
+			int alotted = 0;
+			while (alotted == 0) {
+				int rand = (int) (Math.random() * 10) % 9 + 1;
+				if (BOARD[rand] == ' ') {
+					BOARD[rand] = comp;
+					alotted = 1;
+
+				}
+
+			}
+
+		}
 	}
 
 	static void toss(String a) {
